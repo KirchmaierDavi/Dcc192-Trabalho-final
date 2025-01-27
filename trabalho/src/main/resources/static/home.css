@@ -1,21 +1,29 @@
 body, html {
     height: 100%;
+    background-color: white; 
 }
 .bg {
-    background-image: url('https://source.unsplash.com/random/1920x1080');
     height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: white;
+}
+.container {
+    background-color: #F8F9fa; 
+    width: fit-content;
+    padding: 20px; 
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .overlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: white;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #000000;
 }
 .btn-custom {
+    color: white;
     width: 150px;
 }
