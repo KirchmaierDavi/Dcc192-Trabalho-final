@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+}
+.bg {
+    background-image: url('https://source.unsplash.com/random/1920x1080');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.btn-custom {
+    width: 150px;
+}
