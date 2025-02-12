@@ -12,7 +12,7 @@ public class AjudaController {
         try {
             model.addAttribute("titulo", "Página de Ajuda");
             model.addAttribute("conteudo", "Aqui você encontra informações sobre o sistema.");
-            return "ajuda";
+            return "Ajuda";
         } catch (Exception e) {
             model.addAttribute("error", "Erro ao carregar página de ajuda");
             return "error";

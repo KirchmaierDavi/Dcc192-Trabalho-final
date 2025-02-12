@@ -8,11 +8,11 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homeView() {
-        return "home";
+        return "Home";
     }
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/home";
+        return "redirect:/Home";
     }
 }

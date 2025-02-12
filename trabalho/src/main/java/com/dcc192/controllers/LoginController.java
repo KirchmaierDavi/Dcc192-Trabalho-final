@@ -27,7 +27,7 @@ public class LoginController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/login";
+        return "redirect:/Login";
     }
 
     @GetMapping("/Home")
@@ -37,11 +37,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public String processLogin() {
-        return "redirect:/users";
+        return "redirect:/Users";
     }
 
     @GetMapping("/logout")
     public String logout() {
-        return "redirect:/login?logout";
+        return "redirect:/Login?logout";
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="bg">
+        <div class="overlay">
+            <div class="container">
+                <div class="text-center p-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="display-4">Erro</h1>
+                            <p class="lead" th:text="${erroMsg}">Ocorreu um erro.</p>
+                            <a href="/Home" class="btn btn-primary btn-custom">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
