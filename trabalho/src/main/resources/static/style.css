@@ -1,0 +1,28 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-error {
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.login-success {
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.btn-custom {
+    color: white;
+    width: 150px;
+}

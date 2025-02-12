@@ -8,6 +8,7 @@ class TrabalhoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		assert(true);
 	}
 
 }
