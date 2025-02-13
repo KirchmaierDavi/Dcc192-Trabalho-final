@@ -1,4 +1,4 @@
-package com.dcc192.services;
+package com.dcc.services;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.dcc192.models.User;
+import com.dcc.models.User;
 
-import com.dcc192.repositories.UserRepository;
+import com.dcc.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {

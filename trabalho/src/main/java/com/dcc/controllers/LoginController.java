@@ -1,4 +1,4 @@
-package com.dcc192.controllers;
+package com.dcc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +24,12 @@ public class LoginController {
             model.addAttribute("message", "Logout realizado com sucesso!");
         }
 
-        return "login";
+        return "/login";
     }
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/Home";
+        return "redirect:/home";
     }
 
     @PostMapping("/login")

@@ -1,6 +1,6 @@
-package com.dcc192.repositories;
+package com.dcc.repositories;
 
-import com.dcc192.models.User;
+import com.dcc.models.User;
 
 import java.util.Optional;
 

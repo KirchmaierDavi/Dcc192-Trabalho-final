@@ -1,4 +1,4 @@
-package com.dcc192.controllers;
+package com.dcc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ public class AjudaController {
         try {
             model.addAttribute("titulo", "Página de Ajuda");
             model.addAttribute("conteudo", "Aqui você encontra informações sobre o sistema.");
-            return "Ajuda";
+            return "ajuda";
         } catch (Exception e) {
             model.addAttribute("error", "Erro ao carregar página de ajuda");
             return "error";

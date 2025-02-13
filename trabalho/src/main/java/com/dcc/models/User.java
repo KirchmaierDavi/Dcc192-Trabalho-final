@@ -1,4 +1,4 @@
-package com.dcc192.models;
+package com.dcc.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,5 @@
-.jsp -->
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,13 +107,13 @@
                 <div class="modal-body">
                     <form th:action="@{/users/edit/{id}(id=${user.id})}" method="post">
                         <div class="form-group">
-                            <label>Nome de Usuário</label>
-                            <input type="text" class="form-control" name="username" 
+                            <label for="editUser">Nome de Usuário</label>
+                            <input type="text" class="form-control" id="editUsername" name="username" 
                                    th:value="${user.username}" required>
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" name="email" 
+                            <label for="editEmail">Email</label>
+                            <input type="email" class="form-control" id="editEmail" name="email" 
                                    th:value="${user.email}" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Atualizar</button>
