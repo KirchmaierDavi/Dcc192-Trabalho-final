@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
@@ -58,5 +60,24 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static User builder() {
+        return new User();
+    }
+
+    public User username(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public User password(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public User email(String email) {
+        this.email = email;
+        return this;
     }
 }
