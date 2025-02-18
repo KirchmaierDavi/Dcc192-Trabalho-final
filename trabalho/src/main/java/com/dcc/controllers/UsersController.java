@@ -25,29 +25,36 @@ public class UsersController {
         return "users";
     }
 
-    @PostMapping("/users/create")
+    @PostMapping("/create") 
     public String createUser(@RequestParam String username,
             @RequestParam String email,
             @RequestParam String password,
             RedirectAttributes redirectAttributes) {
         try {
             userService.createUser(username, email, password);
-            redirectAttributes.addFlashAttribute("successMessage", "Usuário criado com sucesso!");
-            return "redirect:/users";
+            redirectAttributes.addFlashAttribute("message", "Usuário criado com sucesso!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Erro ao criar usuário: " + e.getMessage());
-            return "redirect:/users";
+            redirectAttributes.addFlashAttribute("error", "Erro ao criar usuário: " + e.getMessage());
         }
+        return "redirect:/users";
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable Long id, @ModelAttribute User user, RedirectAttributes redirectAttributes) {
+    public String editUser(@PathVariable Long id, 
+                         @RequestParam String username,
+                         @RequestParam String email,
+                         RedirectAttributes redirectAttributes) {
         try {
-            user.setId(id);
+            User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            
+            user.setUsername(username);
+            user.setEmail(email);
             userRepository.save(user);
+            
             redirectAttributes.addFlashAttribute("message", "Usuário atualizado com sucesso!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar usuário!");
+            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar usuário: " + e.getMessage());
         }
         return "redirect:/users";
     }
@@ -55,10 +62,13 @@ public class UsersController {
     @PostMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
+            if (!userRepository.existsById(id)) {
+                throw new RuntimeException("Usuário não encontrado");
+            }
             userRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("message", "Usuário excluído com sucesso!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Erro ao excluir usuário!");
+            redirectAttributes.addFlashAttribute("error", "Erro ao excluir usuário: " + e.getMessage());
         }
         return "redirect:/users";
     }

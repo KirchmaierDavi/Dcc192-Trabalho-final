@@ -39,22 +39,6 @@ public class LoginController {
         return "login"; 
     }
 
-    @PostMapping("/login")
-    public String processLogin(@RequestParam String username,
-            @RequestParam String password,
-            Model model) {
-        try {
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(username, password));
-
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            return "redirect:/users";
-        } catch (Exception e) {
-            model.addAttribute("error", "Usuário ou senha inválidos!");
-            return "login";
-        }
-    }
-
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

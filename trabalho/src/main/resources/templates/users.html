@@ -1,149 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consulta de Usuários</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Sistema de Usuários</a>
-        <div class="collapse navbar-collapse justify-content-end">
-            <form class="form-inline" action="/logout" method="post">
-                <button class="btn btn-outline-light" type="submit">Logout</button>
-            </form>
-        </div>
+      <a class="navbar-brand" href="#">Sistema de Usuários</a>
+      <div class="collapse navbar-collapse justify-content-end">
+        <form class="form-inline" action="/logout" method="post">
+          <button class="btn btn-outline-light" type="submit">Logout</button>
+        </form>
+      </div>
     </nav>
 
     <div class="bg">
-        <div class="overlay">
-            <div class="container">
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h1 class="display-4">Usuários Cadastrados</h1>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">
-                                <i class="fas fa-plus"></i> Novo Usuário
-                            </button>
-                        </div>
-                        
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="user : ${users}">
-                                    <td th:text="${user.id}">1</td>
-                                    <td th:text="${user.username}">João Silva</td>
-                                    <td th:text="${user.email}">joao.silva@example.com</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-warning" data-toggle="modal" 
-                                                th:data-target="'#editModal' + ${user.id}">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger" data-toggle="modal" 
-                                                th:data-target="'#deleteModal' + ${user.id}">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+      <div class="overlay">
+        <div class="container">
+          <div class="card mt-4">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h1 class="display-4">Usuários Cadastrados</h1>
+                <button
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#addUserModal"
+                >
+                  <i class="fas fa-plus"></i> Novo Usuário
+                </button>
+              </div>
+
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">1</td>
+                    <td th:text="${user.username}">João Silva</td>
+                    <td th:text="${user.email}">joao.silva@example.com</td>
+                    <td>
+                      <button
+                        class="btn btn-sm btn-warning"
+                        data-toggle="modal"
+                        th:data-target="'#editModal' + ${user.id}"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        data-toggle="modal"
+                        th:data-target="'#deleteModal' + ${user.id}"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="modal fade" id="addUserModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Adicionar Usuário</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="/users/add" method="post">
-                        <div class="form-group">
-                            <label for="username">Nome de Usuário</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Senha</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
-                </div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Adicionar Usuário</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/users/create" method="post">
+              <div class="form-group">
+                <label for="username">Nome de Usuário</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Senha</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div th:each="user : ${users}" th:id="'editModal' + ${user.id}" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar Usuário</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{/users/edit/{id}(id=${user.id})}" method="post">
-                        <div class="form-group">
-                            <label for="editUser">Nome de Usuário</label>
-                            <input type="text" class="form-control" id="editUsername" name="username" 
-                                   th:value="${user.username}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="editEmail">Email</label>
-                            <input type="email" class="form-control" id="editEmail" name="email" 
-                                   th:value="${user.email}" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Atualizar</button>
-                    </form>
-                </div>
-            </div>
+    <div
+      th:each="user : ${users}"
+      th:id="'editModal' + ${user.id}"
+      class="modal fade"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Usuário</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form th:action="@{/users/edit/{id}(id=${user.id})}" method="post">
+              <div class="form-group">
+                <label for="editUser">Nome de Usuário</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editUsername"
+                  name="username"
+                  th:value="${user.username}"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="editEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="editEmail"
+                  name="email"
+                  th:value="${user.email}"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Atualizar</button>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div th:each="user : ${users}" th:id="'deleteModal' + ${user.id}" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirmar Exclusão</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Deseja realmente excluir o usuário <span th:text="${user.username}"></span>?</p>
-                    <form th:action="@{/users/delete/{id}(id=${user.id})}" method="post">
-                        <button type="submit" class="btn btn-danger">Excluir</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    </form>
-                </div>
-            </div>
+    <div
+      th:each="user : ${users}"
+      th:id="'deleteModal' + ${user.id}"
+      class="modal fade"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Exclusão</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Deseja realmente excluir o usuário
+              <span th:text="${user.username}"></span>?
+            </p>
+            <form
+              th:action="@{/users/delete/{id}(id=${user.id})}"
+              method="post"
+            >
+              <button type="submit" class="btn btn-danger">Excluir</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
